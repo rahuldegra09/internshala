@@ -39,7 +39,7 @@ const authOptions= {
     },
     secret: process.env.NEXTAUTH_SECRET,
     pages: {
-        signIn: '/',
+        signIn: process.env.NEXTAUTH_URL === 'production' ? 'https://your-vercel-app.vercel.app/' : 'http://localhost:3000/',
     },
 };
 
