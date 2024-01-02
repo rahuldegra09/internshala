@@ -1,12 +1,10 @@
 import { connectToMongoDB } from "@/lib/mongodb";
 import User from "@/models/user";
-import NextAuth,{ AuthOptions } from "next-auth";
+import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs"
 
-
-const authOptions= {
-
+export const authOptions = {
     providers: [
         CredentialsProvider({
             name: "credentials",
@@ -39,10 +37,9 @@ const authOptions= {
     },
     secret: process.env.NEXTAUTH_SECRET,
     pages: {
-        signIn: process.env.NEXTAUTH_URL === 'production' ? 'https://your-vercel-app.vercel.app/' : 'http://localhost:3000/',
+        signIn: '/',
     },
+
 };
-
 const handler = NextAuth(authOptions);
-
-export  { handler as GET, handler as POST };
+export { handler as GET, handler as POST };  
